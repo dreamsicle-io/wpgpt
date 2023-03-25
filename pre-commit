@@ -1,0 +1,4 @@
+#!/bin/sh
+
+composer run build
+git add "languages/wpgpt.pot"

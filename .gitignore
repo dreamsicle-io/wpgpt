@@ -1,0 +1,8 @@
+# Deps
+vendor/
+
+# Log Files
+*.log
+
+# Misc
+*.DS_Store

@@ -1,0 +1,35 @@
+# Copyright (C) 2023 Dreamsicle
+# This file is distributed under the UNLICENSED.
+msgid ""
+msgstr ""
+"Project-Id-Version: WPGPT 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpgpt\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-03-25T19:32:29+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: wpgpt\n"
+
+#. Plugin Name of the plugin
+msgid "WPGPT"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/dreamsicle-io/wpgpt/"
+msgstr ""
+
+#. Description of the plugin
+msgid "An experimental plugin integrating ChapGPT with WordPress."
+msgstr ""
+
+#. Author of the plugin
+msgid "Dreamsicle"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.dreamsicle.io/"
+msgstr ""
