@@ -178,8 +178,7 @@ class WPGPT_Settings {
 			if ( $setting['required'] && empty( $value ) ) {
 				$this->print_admin_notice(
 					sprintf(
-						/*
-						 translators: 1: setting label, 2: setting name. */
+						/* translators: 1: setting label, 2: setting name. */
 						__( 'A value for <strong>%1$s</strong> (<em>%2$s</em>) is required.', 'wpgpt' ),
 						$setting['label'],
 						$setting['name']
@@ -191,7 +190,8 @@ class WPGPT_Settings {
 	}
 
 	public function print_admin_notice( $text, $variant = 'info', $is_dismissible = false ) {
-		$message   = sprintf(
+		$message = sprintf(
+			/* translators: 1: notice message. */
 			__( '[WPGPT] %1$s', 'wpgpt' ),
 			$text
 		);

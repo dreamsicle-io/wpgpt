@@ -65,7 +65,7 @@ class WPGPT_Post_Generator {
 	<?php }
 
 	public function print_admin_style() { ?>
-	
+
 		<style id="wpgpt-generate-post-style">
 
 			.wpgpt-post-generator-loader {
@@ -103,7 +103,7 @@ class WPGPT_Post_Generator {
 			}
 
 		</style>
-	
+
 	<?php }
 
 	public function print_admin_script() { ?>
@@ -167,7 +167,7 @@ class WPGPT_Post_Generator {
 					const formData = getFormData();
 					return formData.get('post_title');
 				}
-				
+
 				function getTags() {
 					const formData = getFormData();
 					const tagData = formData.get('tax_input[post_tag]') || '';
@@ -206,7 +206,7 @@ class WPGPT_Post_Generator {
 					if (keywords) {
 						prompt += 'Keywords: ' + keywords + '.';
 					}
-					
+
 					return prompt.trim();
 				}
 

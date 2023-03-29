@@ -87,7 +87,7 @@ class WPGPT_Caption_Generator {
 	<?php }
 
 	public function print_admin_style() { ?>
-	
+
 		<style id="wpgpt-generate-caption-style">
 
 			#TB_ajaxContent {
@@ -181,7 +181,7 @@ class WPGPT_Caption_Generator {
 			}
 
 		</style>
-	
+
 	<?php }
 
 	public function print_admin_script() { ?>

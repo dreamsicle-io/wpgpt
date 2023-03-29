@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-03-29T21:02:35+00:00\n"
+"POT-Creation-Date: 2023-03-29T21:05:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: wpgpt\n"
@@ -132,10 +132,11 @@ msgid "Select a value between <em>-2</em> and <em>2</em> to be used as the <a hr
 msgstr ""
 
 #. translators: 1: setting label, 2: setting name.
-#: includes/class-wpgpt-settings.php:183
+#: includes/class-wpgpt-settings.php:182
 msgid "A value for <strong>%1$s</strong> (<em>%2$s</em>) is required."
 msgstr ""
 
+#. translators: 1: notice message.
 #: includes/class-wpgpt-settings.php:195
 msgid "[WPGPT] %1$s"
 msgstr ""
