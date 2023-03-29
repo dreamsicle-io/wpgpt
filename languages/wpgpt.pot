@@ -9,12 +9,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-03-25T19:32:29+00:00\n"
+"POT-Creation-Date: 2023-03-29T21:02:35+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: wpgpt\n"
 
 #. Plugin Name of the plugin
+#: includes/class-wpgpt-settings.php:76
 msgid "WPGPT"
 msgstr ""
 
@@ -32,4 +33,109 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "https://www.dreamsicle.io/"
+msgstr ""
+
+#: includes/class-wpgpt-caption-generator.php:44
+msgid "Generate Caption"
+msgstr ""
+
+#: includes/class-wpgpt-caption-generator.php:57
+msgid "Generate a Social Media Caption"
+msgstr ""
+
+#: includes/class-wpgpt-caption-generator.php:60
+msgid "Click \"Generate\" to generate a social media caption using the current post content as context."
+msgstr ""
+
+#: includes/class-wpgpt-caption-generator.php:73
+msgid "Generating Caption..."
+msgstr ""
+
+#: includes/class-wpgpt-caption-generator.php:83
+msgid "Generate"
+msgstr ""
+
+#: includes/class-wpgpt-post-generator.php:39
+msgid "Generate Post"
+msgstr ""
+
+#: includes/class-wpgpt-post-generator.php:47
+msgid "Elaborate"
+msgstr ""
+
+#: includes/class-wpgpt-post-generator.php:61
+msgid "Generating Post..."
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:75
+msgid "WPGPT Settings"
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:77
+msgid "This is the settings page description."
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:81
+msgid "OpenAI API"
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:82
+msgid "Configure the <a href=\"https://www.openai.com\" target=\"_blank\" rel=\"noopener noreferrer\">OpenAI</a> API."
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:86
+msgid "Defaults"
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:87
+msgid "Configure various default values."
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:94
+msgid "API Key"
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:95
+msgid "Enter an <a href=\"https://platform.openai.com/account/api-keys/\" target=\"_blank\" rel=\"noopener noreferrer\">OpenAI API key</a>. This will be passed with your requests and will be used to <a href=\"https://platform.openai.com/account/usage/\" target=\"_blank\" rel=\"noopener noreferrer\">track usage</a>."
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:105
+msgid "Maximum Tokens"
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:106
+msgid "Select a value between <em>50</em> and <em>4000</em> to be used as the <a href=\"https://platform.openai.com/docs/api-reference/chat/create#chat/create-max_tokens\" target=\"_blank\" rel=\"noopener noreferrer\">maximum tokens</a> for responses. Tokens can be thought of as pieces of words. <a href=\"https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them\" target=\"_blank\" rel=\"noopener noreferrer\">Learn more about how to count tokens</a>"
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:120
+msgid "Temperature"
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:121
+msgid "Select a value between <em>0</em> and <em>1</em> to be used as the <a href=\"https://platform.openai.com/docs/api-reference/chat/create#chat/create-temperature\" target=\"_blank\" rel=\"noopener noreferrer\">temperature</a> for prompts. Higher values like <em>0.8</em> will make the output more random, while lower values like <em>0.2</em> will make it more focused and deterministic."
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:135
+msgid "Presence Penalty"
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:136
+msgid "Select a value between <em>-2</em> and <em>2</em> to be used as the <a href=\"https://platform.openai.com/docs/api-reference/chat/create#chat/create-presence_penalty\" target=\"_blank\" rel=\"noopener noreferrer\">presence penalty</a> for responses. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. <a href=\"https://platform.openai.com/docs/api-reference/parameter-details\" target=\"_blank\" rel=\"noopener noreferrer\">Learn more about presence penalties</a>"
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:150
+msgid "Frequency Penalty"
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:151
+msgid "Select a value between <em>-2</em> and <em>2</em> to be used as the <a href=\"https://platform.openai.com/docs/api-reference/chat/create#chat/create-frequency_penalty\" target=\"_blank\" rel=\"noopener noreferrer\">frequency penalty</a> for responses. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. <a href=\"https://platform.openai.com/docs/api-reference/parameter-details\" target=\"_blank\" rel=\"noopener noreferrer\">Learn more about frequency penalties</a>"
+msgstr ""
+
+#. translators: 1: setting label, 2: setting name.
+#: includes/class-wpgpt-settings.php:183
+msgid "A value for <strong>%1$s</strong> (<em>%2$s</em>) is required."
+msgstr ""
+
+#: includes/class-wpgpt-settings.php:195
+msgid "[WPGPT] %1$s"
 msgstr ""
