@@ -6,7 +6,7 @@
 		"editor.defaultFormatter": "wongjn.php-sniffer",
 		"editor.formatOnSave": true,
 	},
-	"intelephense.environment.phpVersion": "7.4.1",
+	"intelephense.environment.phpVersion": "8.1.9",
 	"intelephense.format.braces": "k&r",
 	"intelephense.stubs": [
 		"apache",
