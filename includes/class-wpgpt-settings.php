@@ -90,6 +90,17 @@ class WPGPT_Settings {
 	);
 
 	/**
+	 * Default Option Args
+	 *
+	 * @since 0.1.0
+	 * @var array $default_option_args An array of default option arguments.
+	 */
+	private array $default_option_args = array(
+		'value' => '',
+		'label' => '',
+	);
+
+	/**
 	 * Default Range Setting Args
 	 *
 	 * @since 0.1.0
@@ -102,6 +113,16 @@ class WPGPT_Settings {
 	);
 
 	/**
+	 * Default Select Setting Args
+	 *
+	 * @since 0.1.0
+	 * @var array $default_select_setting_args An array of default select setting extra arguments.
+	 */
+	private array $default_select_setting_args = array(
+		'options' => array(),
+	);
+
+	/**
 	 * KSES Page Description
 	 *
 	 * @since 0.1.0
@@ -111,6 +132,7 @@ class WPGPT_Settings {
 		'strong' => true,
 		'em'     => true,
 		'span'   => true,
+		'code'   => true,
 		'a'      => array(
 			'href'   => true,
 			'target' => true,
@@ -128,6 +150,7 @@ class WPGPT_Settings {
 		'strong' => true,
 		'em'     => true,
 		'span'   => true,
+		'code'   => true,
 		'a'      => array(
 			'href'   => true,
 			'target' => true,
@@ -145,6 +168,7 @@ class WPGPT_Settings {
 		'strong' => true,
 		'em'     => true,
 		'span'   => true,
+		'code'   => true,
 		'a'      => array(
 			'href'   => true,
 			'target' => true,
@@ -162,6 +186,7 @@ class WPGPT_Settings {
 		'strong' => true,
 		'em'     => true,
 		'span'   => true,
+		'code'   => true,
 		'a'      => array(
 			'href'   => true,
 			'target' => true,
@@ -204,9 +229,31 @@ class WPGPT_Settings {
 			),
 			array(
 				'section'           => 'wpgpt_defaults',
+				'name'              => 'wpgpt_default_model',
+				'label'             => __( 'Model', 'wpgpt' ),
+				'description'       => __( 'Select the <a href="https://platform.openai.com/docs/api-reference/chat/create#chat/create-model" target="_blank" rel="noopener noreferrer">ChatGPT model</a> for responses. Consult the <a href="https://platform.openai.com/docs/models/model-endpoint-compatibility" target="_blank" rel="noopener noreferrer">Model Endpoint Compatibility Table</a> to see which which models are compatible with which endpoints. Note that <code>GPT-4</code> is currently only available to those who\'s accounts have joined and passed the <a href="https://openai.com/waitlist/gpt-4-api" target="_blank" rel="noopener noreferrer">GPT-4 Waitlist</a>. <a href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer">Learn more about ChatGPT models</a>', 'wpgpt' ),
+				'type'              => 'string',
+				'control_type'      => 'select',
+				'sanitize_callback' => 'sanitize_text_field',
+				'default'           => 'gpt-3.5-turbo',
+				'args'              => array(
+					'options' => array(
+						array(
+							'value' => 'gpt-3.5-turbo',
+							'label' => 'GPT 3.5',
+						),
+						array(
+							'value' => 'gpt-4',
+							'label' => 'GPT 4',
+						),
+					),
+				),
+			),
+			array(
+				'section'           => 'wpgpt_defaults',
 				'name'              => 'wpgpt_default_max_tokens',
 				'label'             => __( 'Maximum Tokens', 'wpgpt' ),
-				'description'       => __( 'Select a value between <em>50</em> and <em>4000</em> to be used as the <a href="https://platform.openai.com/docs/api-reference/chat/create#chat/create-max_tokens" target="_blank" rel="noopener noreferrer">maximum tokens</a> for responses. Tokens can be thought of as pieces of words. <a href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" target="_blank" rel="noopener noreferrer">Learn more about how to count tokens</a>', 'wpgpt' ),
+				'description'       => __( 'Set a value between <code>50</code> and <code>4000</code> to be used as the <a href="https://platform.openai.com/docs/api-reference/chat/create#chat/create-max_tokens" target="_blank" rel="noopener noreferrer">maximum tokens</a> for responses. Tokens can be thought of as pieces of words. <a href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" target="_blank" rel="noopener noreferrer">Learn more about how to count tokens</a>', 'wpgpt' ),
 				'type'              => 'number',
 				'control_type'      => 'number',
 				'sanitize_callback' => 'intval',
@@ -221,7 +268,7 @@ class WPGPT_Settings {
 				'section'           => 'wpgpt_defaults',
 				'name'              => 'wpgpt_default_temperature',
 				'label'             => __( 'Temperature', 'wpgpt' ),
-				'description'       => __( 'Select a value between <em>0</em> and <em>1</em> to be used as the <a href="https://platform.openai.com/docs/api-reference/chat/create#chat/create-temperature" target="_blank" rel="noopener noreferrer">temperature</a> for prompts. Higher values like <em>0.8</em> will make the output more random, while lower values like <em>0.2</em> will make it more focused and deterministic.', 'wpgpt' ),
+				'description'       => __( 'Select a value between <code>0</code> and <code>1</code> to be used as the <a href="https://platform.openai.com/docs/api-reference/chat/create#chat/create-temperature" target="_blank" rel="noopener noreferrer">temperature</a> for prompts. Higher values like <code>0.8</code> will make the output more random, while lower values like <code>0.2</code> will make it more focused and deterministic.', 'wpgpt' ),
 				'type'              => 'number',
 				'control_type'      => 'range',
 				'sanitize_callback' => 'floatval',
@@ -236,7 +283,7 @@ class WPGPT_Settings {
 				'section'           => 'wpgpt_defaults',
 				'name'              => 'wpgpt_default_presence_penalty',
 				'label'             => __( 'Presence Penalty', 'wpgpt' ),
-				'description'       => __( 'Select a value between <em>-2</em> and <em>2</em> to be used as the <a href="https://platform.openai.com/docs/api-reference/chat/create#chat/create-presence_penalty" target="_blank" rel="noopener noreferrer">presence penalty</a> for responses. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model\'s likelihood to talk about new topics. <a href="https://platform.openai.com/docs/api-reference/parameter-details" target="_blank" rel="noopener noreferrer">Learn more about presence penalties</a>', 'wpgpt' ),
+				'description'       => __( 'Select a value between <code>-2</code> and <code>2</code> to be used as the <a href="https://platform.openai.com/docs/api-reference/chat/create#chat/create-presence_penalty" target="_blank" rel="noopener noreferrer">presence penalty</a> for responses. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model\'s likelihood to talk about new topics. <a href="https://platform.openai.com/docs/api-reference/parameter-details" target="_blank" rel="noopener noreferrer">Learn more about presence penalties</a>', 'wpgpt' ),
 				'type'              => 'number',
 				'control_type'      => 'range',
 				'sanitize_callback' => 'floatval',
@@ -251,7 +298,7 @@ class WPGPT_Settings {
 				'section'           => 'wpgpt_defaults',
 				'name'              => 'wpgpt_default_frequency_penalty',
 				'label'             => __( 'Frequency Penalty', 'wpgpt' ),
-				'description'       => __( 'Select a value between <em>-2</em> and <em>2</em> to be used as the <a href="https://platform.openai.com/docs/api-reference/chat/create#chat/create-frequency_penalty" target="_blank" rel="noopener noreferrer">frequency penalty</a> for responses. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model\'s likelihood to repeat the same line verbatim. <a href="https://platform.openai.com/docs/api-reference/parameter-details" target="_blank" rel="noopener noreferrer">Learn more about frequency penalties</a>', 'wpgpt' ),
+				'description'       => __( 'Select a value between <code>-2</code> and <code>2</code> to be used as the <a href="https://platform.openai.com/docs/api-reference/chat/create#chat/create-frequency_penalty" target="_blank" rel="noopener noreferrer">frequency penalty</a> for responses. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model\'s likelihood to repeat the same line verbatim. <a href="https://platform.openai.com/docs/api-reference/parameter-details" target="_blank" rel="noopener noreferrer">Learn more about frequency penalties</a>', 'wpgpt' ),
 				'type'              => 'number',
 				'control_type'      => 'range',
 				'sanitize_callback' => 'floatval',
@@ -294,7 +341,7 @@ class WPGPT_Settings {
 				$this->print_admin_notice(
 					sprintf(
 						/* translators: 1: setting label, 2: setting name. */
-						__( 'A value for <strong>%1$s</strong> (<em>%2$s</em>) is required.', 'wpgpt' ),
+						__( 'A value for <strong>%1$s</strong> (<code>%2$s</code>) is required.', 'wpgpt' ),
 						$setting['label'],
 						$setting['name']
 					),
@@ -449,6 +496,9 @@ class WPGPT_Settings {
 	 */
 	public function render_setting( array $args ) {
 		switch ( $args['setting']['control_type'] ) {
+			case 'select':
+				$this->render_select_control( $args['setting'] );
+				break;
 			case 'range':
 				$this->render_range_control( $args['setting'] );
 				break;
@@ -506,11 +556,40 @@ class WPGPT_Settings {
 		style="vertical-align:middle;"
 		<?php echo $setting['required'] ? 'required' : '' ?>
 		oninput="document.getElementById(this.dataset.previewId).innerHTML = this.value;" />
-		<span
+		<code
 		id="<?php echo esc_attr( $preview_id ); ?>"
 		style="vertical-align:middle;">
 			<?php echo floatval( $value ); ?>
-		</span>
+		</code>
+	<?php }
+
+	/**
+	 * Render Select Control
+	 *
+	 * @since 0.1.0
+	 * @param array $setting An array of setting arguments.
+	 * @return void
+	 */
+	public function render_select_control( array $setting ) {
+		$value   = get_option( $setting['name'] );
+		$args    = wp_parse_args( $setting['args'], $this->default_select_setting_args );
+		$options = array();
+		foreach ( $args['options'] as $option ) {
+			$options[] = wp_parse_args( $option, $this->default_option_args );
+		} ?>
+		<select
+		id="<?php echo esc_attr( $setting['name'] ); ?>"
+		name="<?php echo esc_attr( $setting['name'] ); ?>"
+		autocomplete="off"
+		<?php echo $setting['required'] ? 'required' : '' ?>>
+			<?php foreach ( $options as $option ) { ?>
+				<option 
+				value="<?php echo esc_attr( $option['value'] ); ?>"
+				<?php selected( $option['value'], $value ); ?>>
+					<?php echo esc_html( $option['label'] ); ?>
+				</option>
+			<?php } ?>
+		</select>
 	<?php }
 
 	/**
