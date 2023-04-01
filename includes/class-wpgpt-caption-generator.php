@@ -1,15 +1,37 @@
 <?php
+/**
+ * WPGPT Caption Generator
+ *
+ * @package wpgpt
+ * @since 0.1.0
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * WPGPT Caption Generator
+ *
+ * @since 0.1.0
+ */
 class WPGPT_Caption_Generator {
 
+	/**
+	 * Construct
+	 *
+	 * @since 0.1.0
+	 */
 	public function __construct() {
 
 	}
 
+	/**
+	 * Init
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function init() {
 		add_action( 'media_buttons', array( $this, 'add_editor_button' ), 10 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 10 );
@@ -17,6 +39,12 @@ class WPGPT_Caption_Generator {
 		add_action( 'admin_print_footer_scripts', array( $this, 'print_admin_script' ), 10 );
 	}
 
+	/**
+	 * Enqueue Admin Scripts
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function enqueue_admin_scripts() {
 		if ( ! wp_script_is( 'jquery', 'enqueued' ) ) {
 			wp_enqueue_script( 'jquery' );
@@ -29,6 +57,13 @@ class WPGPT_Caption_Generator {
 		}
 	}
 
+	/**
+	 * Add Editor Button
+	 *
+	 * @since 0.1.0
+	 * @param string $editor The ID of the editor.
+	 * @return void
+	 */
 	public function add_editor_button( string $editor ) {
 		if ( $editor === 'content' ) {
 			$thickbox_id = sprintf( 'wpgpt-caption-generator-thickbox-%1$s', $editor );
@@ -51,6 +86,13 @@ class WPGPT_Caption_Generator {
 		<?php }
 	}
 
+	/**
+	 * Render Generate Caption Modal
+	 *
+	 * @since 0.1.0
+	 * @param string $editor The ID of the editor.
+	 * @return void
+	 */
 	public function render_generate_caption_modal( string $editor ) {
 		$modal_id = sprintf( 'wpgpt-caption-generator-modal-%1$s', $editor ); ?>
 		<div id="<?php echo esc_attr( $modal_id ); ?>" class="wpgpt-caption-generator-modal">
@@ -88,6 +130,12 @@ class WPGPT_Caption_Generator {
 		</div>
 	<?php }
 
+	/**
+	 * Print Admin Style
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function print_admin_style() { ?>
 
 		<style id="wpgpt-caption-generator-style">
@@ -186,6 +234,12 @@ class WPGPT_Caption_Generator {
 
 	<?php }
 
+	/**
+	 * Print Admin Script
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function print_admin_script() { ?>
 
 		<script id="wpgpt-caption-generator-script">

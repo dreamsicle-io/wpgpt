@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-01T20:15:22+00:00\n"
+"POT-Creation-Date: 2023-04-01T20:19:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: wpgpt\n"
@@ -35,23 +35,23 @@ msgstr ""
 msgid "https://www.dreamsicle.io/"
 msgstr ""
 
-#: includes/class-wpgpt-caption-generator.php:46
+#: includes/class-wpgpt-caption-generator.php:81
 msgid "Generate Caption"
 msgstr ""
 
-#: includes/class-wpgpt-caption-generator.php:59
+#: includes/class-wpgpt-caption-generator.php:101
 msgid "Generate a Social Media Caption"
 msgstr ""
 
-#: includes/class-wpgpt-caption-generator.php:62
+#: includes/class-wpgpt-caption-generator.php:104
 msgid "Click \"Generate\" to generate a social media caption using the current post content as context."
 msgstr ""
 
-#: includes/class-wpgpt-caption-generator.php:75
+#: includes/class-wpgpt-caption-generator.php:117
 msgid "Generating Caption..."
 msgstr ""
 
-#: includes/class-wpgpt-caption-generator.php:85
+#: includes/class-wpgpt-caption-generator.php:127
 msgid "Generate"
 msgstr ""
 
