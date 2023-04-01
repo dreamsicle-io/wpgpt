@@ -1,0 +1,47 @@
+name: main
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it.
+      - name: Checkout Repo
+        id: checkout_repo
+        uses: actions/checkout@v2
+      
+      # Gets the version from package.json and sets it as an environment variable.
+      - name: Set Plugin Version
+        id: set_plugin_version
+        run: echo "PLUGIN_VERSION=$(grep '* Version:' wpgpt.php | awk '{print $3}')" >> $GITHUB_ENV
+      
+      # Installs Composer dependencies.
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          version: 2.4
+          php_version: 8.1
+          dev: no
+      
+      # Zips the plugin.
+      - name: Zip Plugin
+        id: zip_plugin
+        run: |
+          zip -r wpgpt.zip ./ -x ".vscode/" ".github/" ".editorconfig" ".gitignore" "composer.json" "composer.lock" "phpcs.xml" "pre-commit"
+      
+      # Creates a release draft.
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          name: ${{ env.PLUGIN_VERSION }}
+          tag: ${{ env.PLUGIN_VERSION }}
+          draft: true
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
+          skipIfReleaseExists: true
+          artifacts: wpgpt.zip
