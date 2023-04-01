@@ -2,7 +2,7 @@
 
 use OpenAI\Client;
 
-class WPGPT {
+class WPGPT_API {
 
 	private string $api_key;
 	private int $default_max_tokens;
@@ -31,10 +31,10 @@ class WPGPT {
 	public function register_rest_routes() {
 		register_rest_route(
 			'wpgpt/v1',
-			'/generate-post',
+			'/generate',
 			array(
 				'methods'             => array( 'GET' ),
-				'callback'            => array( $this, 'generate_post' ),
+				'callback'            => array( $this, 'generate' ),
 				'permission_callback' => '__return_true',
 				'args'                => array(
 					'prompt'            => array(
@@ -70,7 +70,7 @@ class WPGPT {
 		);
 	}
 
-	public function generate_post( WP_REST_Request $request ) {
+	public function generate( WP_REST_Request $request ) {
 
 		$model             = $request->get_param( 'model' );
 		$choices           = $request->get_param( 'choices' );
