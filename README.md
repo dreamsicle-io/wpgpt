@@ -4,5 +4,6 @@ WPGPT is an experimental plugin integrating ChatGPT with WordPress. This plugin 
 
 - [GitHub](https://github.com/dreamsicle-io/wpgpt)
 - [Releases](https://github.com/dreamsicle-io/wpgpt/releases)
+- [Issues](https://github.com/dreamsicle-io/wpgpt/issues)
 - [OpenAI](https://openai.com/)
 - [ChatGPT](https://openai.com/blog/chatgpt)
