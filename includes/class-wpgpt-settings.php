@@ -1,22 +1,81 @@
 <?php
+/**
+ * WPGPT Settings
+ *
+ * @package wpgpt
+ * @since 0.1.0
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * WPGPT Settings
+ *
+ * @since 0.1.0
+ */
 class WPGPT_Settings {
 
+	/**
+	 * Title
+	 *
+	 * @since 0.1.0
+	 * @var string $title The settings page title.
+	 */
 	private string $title;
+
+	/**
+	 * Menu Title
+	 *
+	 * @since 0.1.0
+	 * @var string $menu_title The menu title for the settings page.
+	 */
 	private string $menu_title;
+
+	/**
+	 * Description
+	 *
+	 * @since 0.1.0
+	 * @var string $description The settings page description.
+	 */
 	private string $description;
+
+	/**
+	 * Sections
+	 *
+	 * @since 0.1.0
+	 * @var array $sections An array of section arguments arrays.
+	 */
 	private array $sections;
+
+	/**
+	 * Settings
+	 *
+	 * @since 0.1.0
+	 * @var array $settings An array of setting arguments arrays.
+	 */
 	private array $settings;
-	private array $default_section_args       = array(
+
+	/**
+	 * Default Section Args
+	 *
+	 * @since 0.1.0
+	 * @var array $default_section_args An array of default section arguments.
+	 */
+	private array $default_section_args = array(
 		'id'          => '',
 		'title'       => '',
 		'description' => '',
 	);
-	private array $default_setting_args       = array(
+
+	/**
+	 * Default Setting Args
+	 *
+	 * @since 0.1.0
+	 * @var array $default_setting_args An array of default setting arguments.
+	 */
+	private array $default_setting_args = array(
 		'section'           => '',
 		'name'              => '',
 		'label'             => '',
@@ -29,42 +88,26 @@ class WPGPT_Settings {
 		'required'          => false,
 		'args'              => array(),
 	);
+
+	/**
+	 * Default Range Setting Args
+	 *
+	 * @since 0.1.0
+	 * @var array $default_range_setting_args An array of default range setting extra arguments.
+	 */
 	private array $default_range_setting_args = array(
 		'min'  => 0,
 		'max'  => 10,
 		'step' => 1,
 	);
-	private array $kses_page_description      = array(
-		'strong' => true,
-		'em'     => true,
-		'span'   => true,
-		'a'      => array(
-			'href'   => true,
-			'target' => true,
-			'rel'    => true,
-		),
-	);
-	private array $kses_section_description   = array(
-		'strong' => true,
-		'em'     => true,
-		'span'   => true,
-		'a'      => array(
-			'href'   => true,
-			'target' => true,
-			'rel'    => true,
-		),
-	);
-	private array $kses_setting_description   = array(
-		'strong' => true,
-		'em'     => true,
-		'span'   => true,
-		'a'      => array(
-			'href'   => true,
-			'target' => true,
-			'rel'    => true,
-		),
-	);
-	private array $kses_admin_notice          = array(
+
+	/**
+	 * KSES Page Description
+	 *
+	 * @since 0.1.0
+	 * @var array An array of KSES rules for page descriptions.
+	 */
+	private array $kses_page_description = array(
 		'strong' => true,
 		'em'     => true,
 		'span'   => true,
@@ -75,6 +118,62 @@ class WPGPT_Settings {
 		),
 	);
 
+	/**
+	 * KSES Section Description
+	 *
+	 * @since 0.1.0
+	 * @var array An array of KSES rules for section descriptions.
+	 */
+	private array $kses_section_description = array(
+		'strong' => true,
+		'em'     => true,
+		'span'   => true,
+		'a'      => array(
+			'href'   => true,
+			'target' => true,
+			'rel'    => true,
+		),
+	);
+
+	/**
+	 * KSES Setting Description
+	 *
+	 * @since 0.1.0
+	 * @var array An array of KSES rules for setting descriptions.
+	 */
+	private array $kses_setting_description = array(
+		'strong' => true,
+		'em'     => true,
+		'span'   => true,
+		'a'      => array(
+			'href'   => true,
+			'target' => true,
+			'rel'    => true,
+		),
+	);
+
+	/**
+	 * KSES Admin Notice
+	 *
+	 * @since 0.1.0
+	 * @var array An array of KSES rules for admin notices.
+	 */
+	private array $kses_admin_notice = array(
+		'strong' => true,
+		'em'     => true,
+		'span'   => true,
+		'a'      => array(
+			'href'   => true,
+			'target' => true,
+			'rel'    => true,
+		),
+	);
+
+	/**
+	 * Construct
+	 *
+	 * @since 0.1.0
+	 */
 	public function __construct() {
 		$this->title       = __( 'WPGPT Settings', 'wpgpt' );
 		$this->menu_title  = __( 'WPGPT', 'wpgpt' );
@@ -166,15 +265,27 @@ class WPGPT_Settings {
 		);
 	}
 
+	/**
+	 * Init
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function init() {
 		add_action( 'admin_notices', array( $this, 'print_admin_notices' ), 10 );
 		add_action( 'admin_menu', array( $this, 'register_page' ), 10 );
 		add_action( 'admin_init', array( $this, 'register_sections' ), 10 );
 		add_action( 'admin_init', array( $this, 'register_settings' ), 10 );
-		add_action( 'admin_print_styles-settings_page_wpgpt', array( $this, 'print_styles' ) );
-		add_action( 'admin_print_footer_scripts-settings_page_wpgpt', array( $this, 'print_scripts' ) );
+		add_action( 'admin_print_styles-settings_page_wpgpt', array( $this, 'print_style' ) );
+		add_action( 'admin_print_footer_scripts-settings_page_wpgpt', array( $this, 'print_script' ) );
 	}
 
+	/**
+	 * Print Admin Notices
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function print_admin_notices() {
 		$settings = $this->get_settings();
 		foreach ( $settings as $setting ) {
@@ -193,7 +304,16 @@ class WPGPT_Settings {
 		}
 	}
 
-	public function print_admin_notice( $text, $variant = 'info', $is_dismissible = false ) {
+	/**
+	 * Print Admin Notice
+	 *
+	 * @since 0.1.0
+	 * @param string $text The admin notice text.
+	 * @param string $variant The admin notice variant. One of: info, success, warning, error.
+	 * @param bool   $is_dismissible Whether the admin notice should be dismissible or not.
+	 * @return void
+	 */
+	public function print_admin_notice( string $text, string $variant = 'info', bool $is_dismissible = false ) {
 		$message = sprintf(
 			/* translators: 1: notice message. */
 			__( '[WPGPT] %1$s', 'wpgpt' ),
@@ -218,7 +338,13 @@ class WPGPT_Settings {
 		</div>
 	<?php }
 
-	public function get_sections(): array {
+	/**
+	 * Get Sections
+	 *
+	 * @since 0.1.0
+	 * @return array An array of parsed section argument arrays.
+	 */
+	private function get_sections(): array {
 		$sections = array();
 		foreach ( $this->sections as $section ) {
 			$sections[] = wp_parse_args( $section, $this->default_section_args );
@@ -226,7 +352,13 @@ class WPGPT_Settings {
 		return $sections;
 	}
 
-	public function get_settings(): array {
+	/**
+	 * Get Settings
+	 *
+	 * @since 0.1.0
+	 * @return array An array of parsed setting argument arrays.
+	 */
+	private function get_settings(): array {
 		$settings = array();
 		foreach ( $this->settings as $setting ) {
 			$settings[] = wp_parse_args( $setting, $this->default_setting_args );
@@ -234,6 +366,12 @@ class WPGPT_Settings {
 		return $settings;
 	}
 
+	/**
+	 * Register Page
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function register_page() {
 		add_options_page(
 			$this->title,
@@ -244,6 +382,12 @@ class WPGPT_Settings {
 		);
 	}
 
+	/**
+	 * Register Sections
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function register_sections() {
 		$sections = $this->get_sections();
 		foreach ( $sections as $section ) {
@@ -259,6 +403,12 @@ class WPGPT_Settings {
 		}
 	}
 
+	/**
+	 * Register Settings
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function register_settings() {
 		$settings = $this->get_settings();
 		foreach ( $settings as $setting ) {
@@ -290,6 +440,13 @@ class WPGPT_Settings {
 		}
 	}
 
+	/**
+	 * Render Setting
+	 *
+	 * @since 0.1.0
+	 * @param array $args An array of setting arguments.
+	 * @return void
+	 */
 	public function render_setting( array $args ) {
 		switch ( $args['setting']['control_type'] ) {
 			case 'range':
@@ -306,6 +463,13 @@ class WPGPT_Settings {
 		<?php }
 	}
 
+	/**
+	 * Render Text Control
+	 *
+	 * @since 0.1.0
+	 * @param array $setting An array of setting arguments.
+	 * @return void
+	 */
 	public function render_text_control( array $setting ) {
 		$value = get_option( $setting['name'] ); ?>
 		<input
@@ -318,6 +482,13 @@ class WPGPT_Settings {
 		<?php echo $setting['required'] ? 'required' : '' ?> />
 	<?php }
 
+	/**
+	 * Render Range Control
+	 *
+	 * @since 0.1.0
+	 * @param array $setting An array of setting arguments.
+	 * @return void
+	 */
 	public function render_range_control( array $setting ) {
 		$value      = get_option( $setting['name'] );
 		$args       = wp_parse_args( $setting['args'], $this->default_range_setting_args );
@@ -342,6 +513,13 @@ class WPGPT_Settings {
 		</span>
 	<?php }
 
+	/**
+	 * Render Section
+	 *
+	 * @since 0.1.0
+	 * @param array $args An array of section arguments.
+	 * @return void
+	 */
 	public function render_section( array $args ) {
 		if ( ! empty( $args['description'] ) ) { ?>
 			<p class="description">
@@ -350,8 +528,15 @@ class WPGPT_Settings {
 		<?php }
 	}
 
-	public function print_styles() { ?>
-		<style id="wpgpt-settings-page-styles">
+	/**
+	 * Print Style
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
+	public function print_style() { ?>
+
+		<style id="wpgpt-settings-page-style">
 
 			.wpgpt-setting--type-range input[type="range"] {
 				width: 100%;
@@ -371,14 +556,27 @@ class WPGPT_Settings {
 			}
 
 		</style>
+
 	<?php }
 
-	public function print_scripts() { ?>
-		<script id="wpgpt-settings-page-scripts">
+	/**
+	 * Print Script
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
+	public function print_script() { ?>
+		<script id="wpgpt-settings-page-script">
 
 		</script>
 	<?php }
 
+	/**
+	 * Render Page
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function render_page() { ?>
 		<div class="wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
