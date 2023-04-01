@@ -20,7 +20,7 @@ class WPGPT_Utils {
 	/**
 	 * Get Current URL
 	 *
-	 * @since 0.3.0
+	 * @since 0.3.1
 	 * @return string The current URL.
 	 */
 	public static function get_current_url(): string {
@@ -35,6 +35,7 @@ class WPGPT_Utils {
 	 * Get Thickbox URL
 	 *
 	 * @since 0.1.0
+	 * @since 0.3.1 Refactors to account for `?` in the URL.
 	 * @param array $params An array of params to be used in the thickbox URL.
 	 * @return string The thickbox URL.
 	 */
