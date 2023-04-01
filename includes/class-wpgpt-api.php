@@ -54,32 +54,32 @@ class WPGPT_API {
 	/**
 	 * Default Frequency Penalty
 	 *
-	 * @var float $default_frequency_penalty The default frequency penalty for the OpenAI API request.
 	 * @since 0.1.0
+	 * @var float $default_frequency_penalty The default frequency penalty for the OpenAI API request.
 	 */
 	private float $default_frequency_penalty;
 
 	/**
 	 * Default model
 	 *
-	 * @var string $default_model The default model for the OpenAI API request.
 	 * @since 0.1.0
+	 * @var string $default_model The default model for the OpenAI API request.
 	 */
 	private string $default_model;
 
 	/**
 	 * Default choices
 	 *
-	 * @var int $default_choices The default number of choices for the OpenAI API response.
 	 * @since 0.1.0
+	 * @var int $default_choices The default number of choices for the OpenAI API response.
 	 */
 	private int $default_choices;
 
 	/**
 	 * Client
 	 *
-	 * @var Client $client The OpenAI/Client instance.
 	 * @since 0.1.0
+	 * @var Client $client The OpenAI/Client instance.
 	 */
 	private Client $client;
 
