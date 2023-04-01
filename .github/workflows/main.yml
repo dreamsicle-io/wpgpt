@@ -19,12 +19,12 @@ jobs:
         run: echo "PLUGIN_VERSION=$(grep '* Version:' wpgpt.php | awk '{print $3}')" >> $GITHUB_ENV
       
       # Installs Composer dependencies.
-      - name: Install dependencies
+      - name: Install Dependencies
         uses: php-actions/composer@v6
         with:
-          version: 2.4
-          php_version: 8.1
-          dev: no
+          version: "2.4"
+          php_version: "8.1"
+          dev: "no"
       
       # Zips the plugin.
       - name: Zip Plugin
