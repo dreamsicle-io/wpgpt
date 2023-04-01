@@ -147,6 +147,10 @@ class WPGPT_Caption_Generator {
 				box-sizing: border-box;
 			}
 
+			.wpgpt-caption-generator {
+				padding: 0 7px !important;
+			}
+
 			.wpgpt-caption-generator .wp-media-buttons-icon {
 				margin-top: -0.2em !important;
 			}
@@ -306,7 +310,7 @@ class WPGPT_Caption_Generator {
 					const url = getShortlink();
 					var prompt = 'Write a social media caption for the following post:\n\n';
 					prompt += '```\n';
-					prompt += content + '\n';
+					prompt += content + ' [...]\n';
 					prompt += '```\n\n';
 					prompt += 'Instructions: Begin with an emoji. Include at least 3 popular hashtags. Include the URL "' + url + '".\n';
 					prompt += 'Personality: Write in a creative and urgent tone as if you were a social media export for a popular publication. Do not write in the first person.\n\n';

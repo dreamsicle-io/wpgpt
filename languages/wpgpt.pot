@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-01T21:11:57+00:00\n"
+"POT-Creation-Date: 2023-04-01T21:50:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: wpgpt\n"
@@ -76,7 +76,7 @@ msgid "WPGPT Settings"
 msgstr ""
 
 #: includes/class-wpgpt-settings.php:180
-msgid "This is the settings page description."
+msgid "WPGPT is an experimental plugin integrating ChatGPT with WordPress. This settings page exposes all plugin settings that control various OpenAI API arguments and other plugin functions. This plugin requires that you have your own OpenAI developer account and that you provide your own OpenAI API key. WPGPT is powered by <a href=\"https://www.openai.com\" target=\"_blank\" rel=\"noopener noreferrer\">OpenAI</a> and <a href=\"https://openai.com/blog/chatgpt\" target=\"_blank\" rel=\"noopener noreferrer\">ChatGPT</a>."
 msgstr ""
 
 #: includes/class-wpgpt-settings.php:184
