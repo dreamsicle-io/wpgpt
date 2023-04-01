@@ -29,8 +29,8 @@ require WPGPT_PATH . '/includes/class-wpgpt-elaborator.php';
 require WPGPT_PATH . '/includes/class-wpgpt-caption-generator.php';
 require WPGPT_PATH . '/includes/class-wpgpt-utils.php';
 
-add_action( 'plugins_loaded', array( new WPGPT_API(), 'init' ), 0 );
-add_action( 'plugins_loaded', array( new WPGPT_Settings(), 'init' ), 0 );
-add_action( 'plugins_loaded', array( new WPGPT_Post_Generator(), 'init' ), 0 );
-add_action( 'plugins_loaded', array( new WPGPT_Elaborator(), 'init' ), 0 );
-add_action( 'plugins_loaded', array( new WPGPT_Caption_Generator(), 'init' ), 0 );
+add_action( 'plugins_loaded', array( new WPGPT_API(), 'init' ), 10 );
+add_action( 'plugins_loaded', array( new WPGPT_Settings(), 'init' ), 10 );
+add_action( 'plugins_loaded', array( new WPGPT_Post_Generator(), 'init' ), 10 );
+add_action( 'plugins_loaded', array( new WPGPT_Elaborator(), 'init' ), 10 );
+add_action( 'plugins_loaded', array( new WPGPT_Caption_Generator(), 'init' ), 10 );
