@@ -1,15 +1,37 @@
 <?php
+/**
+ * WPGPT Post Generator
+ *
+ * @package wpgpt
+ * @since 0.1.0
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * WPGPT Post Generator
+ *
+ * @since 0.1.0
+ */
 class WPGPT_Post_Generator {
 
+	/**
+	 * Construct
+	 *
+	 * @since 0.1.0
+	 */
 	public function __construct() {
 
 	}
 
+	/**
+	 * Init
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function init() {
 		add_action( 'media_buttons', array( $this, 'add_editor_button' ), 10 );
 		add_action( 'admin_print_styles', array( $this, 'print_admin_style' ), 10 );
@@ -17,6 +39,13 @@ class WPGPT_Post_Generator {
 		add_action( 'admin_footer', array( $this, 'render_loader' ), 10 );
 	}
 
+	/**
+	 * Add Editor Button
+	 *
+	 * @since 0.1.0
+	 * @param string $editor The ID of the editor.
+	 * @return void
+	 */
 	public function add_editor_button( string $editor ) {
 		if ( $editor === 'content' ) { ?>
 			<button 
@@ -30,6 +59,12 @@ class WPGPT_Post_Generator {
 		<?php }
 	}
 
+	/**
+	 * Render Loader
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function render_loader() { ?>
 		<div id="wpgpt-post-generator-loader" class="wpgpt-post-generator-loader">
 			<div class="wpgpt-post-generator-loader__container">
@@ -45,6 +80,12 @@ class WPGPT_Post_Generator {
 		</div>
 	<?php }
 
+	/**
+	 * Print Admin Style
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function print_admin_style() { ?>
 
 		<style id="wpgpt-post-generator-style">
@@ -87,6 +128,12 @@ class WPGPT_Post_Generator {
 
 	<?php }
 
+	/**
+	 * Print Admin Script
+	 *
+	 * @since 0.1.0
+	 * @return void
+	 */
 	public function print_admin_script() { ?>
 
 		<script id="wpgpt-post-generator-script">
