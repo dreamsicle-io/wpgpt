@@ -28,9 +28,8 @@ jobs:
       # Installs production Composer dependencies
       - name: Install Composer Production Dependencies
         id: install_composer_production_dependencies
-        uses: "ramsey/composer-install@v2"
-        with:
-          composer-options: --no-dev
+        run: |
+          composer install --no-dev
       
       # Zips the plugin.
       - name: Zip Plugin
