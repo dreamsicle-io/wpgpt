@@ -60,7 +60,7 @@ class WPGPT_API {
 	private float $default_frequency_penalty;
 
 	/**
-	 * Default model
+	 * Default Model
 	 *
 	 * @since 0.1.0
 	 * @var string $default_model The default model for the OpenAI API request.
@@ -68,7 +68,7 @@ class WPGPT_API {
 	private string $default_model;
 
 	/**
-	 * Default choices
+	 * Default Choices
 	 *
 	 * @since 0.1.0
 	 * @var int $default_choices The default number of choices for the OpenAI API response.
