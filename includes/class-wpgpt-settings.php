@@ -177,7 +177,7 @@ class WPGPT_Settings {
 	public function __construct() {
 		$this->title       = __( 'WPGPT Settings', 'wpgpt' );
 		$this->menu_title  = __( 'WPGPT', 'wpgpt' );
-		$this->description = __( 'This is the settings page description.', 'wpgpt' );
+		$this->description = __( 'WPGPT is an experimental plugin integrating ChatGPT with WordPress. This settings page exposes all plugin settings that control various OpenAI API arguments and other plugin functions. This plugin requires that you have your own OpenAI developer account and that you provide your own OpenAI API key. WPGPT is powered by <a href="https://www.openai.com" target="_blank" rel="noopener noreferrer">OpenAI</a> and <a href="https://openai.com/blog/chatgpt" target="_blank" rel="noopener noreferrer">ChatGPT</a>.', 'wpgpt' );
 		$this->sections    = array(
 			array(
 				'id'          => 'wpgpt_openai_api',
@@ -522,7 +522,7 @@ class WPGPT_Settings {
 	 */
 	public function render_section( array $args ) {
 		if ( ! empty( $args['description'] ) ) { ?>
-			<p class="description">
+			<p>
 				<?php echo wp_kses( $args['description'], $this->kses_section_description ); ?>
 			</p>
 		<?php }
@@ -535,7 +535,6 @@ class WPGPT_Settings {
 	 * @return void
 	 */
 	public function print_style() { ?>
-
 		<style id="wpgpt-settings-page-style">
 
 			.wpgpt-setting--type-range input[type="range"] {
@@ -556,7 +555,6 @@ class WPGPT_Settings {
 			}
 
 		</style>
-
 	<?php }
 
 	/**
@@ -578,9 +576,9 @@ class WPGPT_Settings {
 	 * @return void
 	 */
 	public function render_page() { ?>
-		<div class="wrap">
+		<div class="wrap wpgpt-settings">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<p class="description"><?php echo wp_kses( $this->description, $this->kses_page_description ); ?></p>
+			<p><?php echo wp_kses( $this->description, $this->kses_page_description ); ?></p>
 			<form action="options.php" method="POST">
 				<?php settings_fields( 'wpgpt' ); ?>
 				<?php do_settings_sections( 'wpgpt' ); ?>
