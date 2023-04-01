@@ -15,6 +15,10 @@
  * @package wpgpt
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 define( 'WPGPT_PATH', plugin_dir_path( __FILE__ ) );
 
 require WPGPT_PATH . '/vendor/autoload.php';

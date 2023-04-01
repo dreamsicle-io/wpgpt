@@ -1,6 +1,8 @@
 <?php
 
-use OpenAI\Client;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class WPGPT_Caption_Generator {
 
