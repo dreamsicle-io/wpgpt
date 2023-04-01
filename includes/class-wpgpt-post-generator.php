@@ -13,38 +13,17 @@ class WPGPT_Post_Generator {
 		add_action( 'admin_print_styles', array( $this, 'print_admin_style' ), 10 );
 		add_action( 'admin_print_footer_scripts', array( $this, 'print_admin_script' ), 10 );
 		add_action( 'admin_footer', array( $this, 'render_loader' ), 10 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 10 );
-	}
-
-	public function enqueue_admin_scripts() {
-		if ( ! wp_script_is( 'jquery', 'enqueued' ) ) {
-			wp_enqueue_script( 'jquery' );
-		}
-		if ( ! wp_script_is( 'thickbox', 'enqueued' ) ) {
-			wp_enqueue_script( 'thickbox' );
-		}
-		if ( ! wp_style_is( 'thickbox', 'enqueued' ) ) {
-			wp_enqueue_style( 'thickbox' );
-		}
 	}
 
 	public function add_editor_button( string $editor ) {
 		if ( $editor === 'content' ) { ?>
 			<button 
 			type="button" 
-			id="<?php printf( 'wpgpt-generate-post-%1$s', sanitize_key( $editor ) ); ?>" 
-			class="button wpgpt-generate-post" 
+			id="<?php printf( 'wpgpt-post-generator-%1$s', sanitize_key( $editor ) ); ?>" 
+			class="button wpgpt-post-generator" 
 			data-editor="<?php echo esc_attr( $editor ); ?>">
-				<span class="dashicons dashicons-admin-comments" style="vertical-align:middle;pointer-events:none;"></span>
+				<span class="dashicons dashicons-welcome-write-blog" style="vertical-align:middle;pointer-events:none;margin-top:-0.2em;"></span>
 				<span style="pointer-events:none;"><?php esc_html_e( 'Generate Post', 'wpgpt' ); ?></span>
-			</button>
-			<button 
-			type="button" 
-			id="<?php printf( 'wpgpt-elaborate-selection-%1$s', sanitize_key( $editor ) ); ?>" 
-			class="button wpgpt-elaborate-selection" 
-			data-editor="<?php echo esc_attr( $editor ); ?>">
-				<span class="dashicons dashicons-admin-comments" style="vertical-align:middle;pointer-events:none;"></span>
-				<span style="pointer-events:none;"><?php esc_html_e( 'Elaborate', 'wpgpt' ); ?></span>
 			</button>
 		<?php }
 	}
@@ -66,7 +45,7 @@ class WPGPT_Post_Generator {
 
 	public function print_admin_style() { ?>
 
-		<style id="wpgpt-generate-post-style">
+		<style id="wpgpt-post-generator-style">
 
 			.wpgpt-post-generator-loader {
 				position: fixed;
@@ -98,7 +77,7 @@ class WPGPT_Post_Generator {
 				color: #ffffff;
 			}
 
-			body.wpgpt-loading .wpgpt-post-generator-loader {
+			body.wpgpt-post-generator-loading .wpgpt-post-generator-loader {
 				display: block;
 			}
 
@@ -108,29 +87,22 @@ class WPGPT_Post_Generator {
 
 	public function print_admin_script() { ?>
 
-		<script id="wpgpt-generate-post-script">
+		<script id="wpgpt-post-generator-script">
 
 			(function() {
 
 				function init() {
-					const buttons = document.querySelectorAll('button.wpgpt-generate-post');
-					const elaborateButtons = document.querySelectorAll('button.wpgpt-elaborate-selection');
+					destroy();
+					const buttons = document.querySelectorAll('button.wpgpt-post-generator');
 					buttons.forEach(function(button) {
 						button.addEventListener('click', handleButtonClick);
-					});
-					elaborateButtons.forEach(function(button) {
-						button.addEventListener('click', handleElaborateButtonClick);
 					});
 				}
 
 				function destroy() {
-					const buttons = document.querySelectorAll('button.wpgpt-generate-post');
-					const elaborateButtons = document.querySelectorAll('button.wpgpt-elaborate-selection');
+					const buttons = document.querySelectorAll('button.wpgpt-post-generator');
 					buttons.forEach(function(button) {
 						button.removeEventListener('click', handleButtonClick);
-					});
-					elaborateButtons.forEach(function(button) {
-						button.removeEventListener('click', handleElaborateButtonClick);
 					});
 				}
 
@@ -138,12 +110,6 @@ class WPGPT_Post_Generator {
 					e.preventDefault();
 					const editorId = e.target.dataset.editor;
 					generatePost(editorId);
-				}
-
-				function handleElaborateButtonClick(e) {
-					e.preventDefault();
-					const editorId = e.target.dataset.editor;
-					elaborateSelection(editorId);
 				}
 
 				function setEditorContent(editorId, content) {
@@ -210,35 +176,11 @@ class WPGPT_Post_Generator {
 					return prompt.trim();
 				}
 
-				function getElaboratePrompt(editorId) {
-					const selection = getEditorSelection(editorId);
-					const title = getTitle();
-					const tags = getTags();
-					const categories = getCategories();
-					var prompt = 'Elaborate on the following text:\n\n';
-					prompt += '```\n';
-					prompt += selection + '\n';
-					prompt += '```\n\n';
-					prompt += 'Instructions: Format as HTML. Seperate consecutive paragraphs with `<br/><br/>`. Do not wrap the the content in document or body elements; and do not output any elements except for `ol`, `ul`, `li`, `strong`, `em`, `del`, `a`, `pre`, `code`.\n\n';
-					prompt += 'Personality: Write in a creative tone as if you were a staff writer for a popular publication with expert sources. Do not write in the first person.\n\n';
-					return prompt.trim();
-				}
-
-				function getEditorSelection(editorId) {
-					const editor = tinyMCE.get(editorId);
-					return selection = editor.selection.getContent({format : 'html'});
-				}
-
-				function setEditorSelection(editorId, content) {
-					const editor = tinyMCE.get(editorId);
-					return selection = editor.selection.setContent(content, {format : 'html'});
-				}
-
 				function setLoading(isLoading) {
 					if (isLoading) {
-						document.body.classList.add('wpgpt-loading');
+						document.body.classList.add('wpgpt-post-generator-loading');
 					} else {
-						document.body.classList.remove('wpgpt-loading');
+						document.body.classList.remove('wpgpt-post-generator-loading');
 					}
 				}
 
@@ -247,7 +189,7 @@ class WPGPT_Post_Generator {
 					const prompt = getPrompt();
 					console.info('Generating post...\n\n', prompt);
 					const response = wp.apiRequest({
-						path: '/wpgpt/v1/generate-post',
+						path: '/wpgpt/v1/generate',
 						data: {
 							prompt: prompt,
 						},
@@ -267,33 +209,14 @@ class WPGPT_Post_Generator {
 					});
 				}
 
-				function elaborateSelection(editorId) {
-					setLoading(true);
-					const prompt = getElaboratePrompt(editorId);
-					console.info('Elaborating selection...\n\n', prompt);
-					const response = wp.apiRequest({
-						path: '/wpgpt/v1/generate-post',
-						data: {
-							prompt: prompt,
-						},
-					})
-					.then(function(response) {
-						console.info('Selection elaborated!\n\n', response);
-						const message = response.choices[0].message.content.trim();
-						setEditorSelection(editorId, message);
-					})
-					.catch(function(response) {
-						const errorStatus = response.responseJSON.data.status;
-						const errorMessage = response.responseJSON.message;
-						console.error(errorStatus + ': ' + errorMessage);
-					})
-					.always(function() {
-						setLoading(false);
-					});
-				}
+				window.wpgpt = window.wpgpt || {};
+				window.wpgpt.postGenerator = {
+					init: init,
+					destroy: destroy,
+				};
 
 				document.addEventListener('DOMContentLoaded', function(e) {
-					init();
+					window.wpgpt.postGenerator.init();
 				});
 
 			})();

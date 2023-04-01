@@ -29,7 +29,7 @@ class WPGPT_Caption_Generator {
 
 	public function add_editor_button( string $editor ) {
 		if ( $editor === 'content' ) {
-			$thickbox_id = sprintf( 'wpgpt-generate-caption-thickbox-%1$s', $editor );
+			$thickbox_id = sprintf( 'wpgpt-caption-generator-thickbox-%1$s', $editor );
 			$url         = WPGPT_Utils::get_thickbox_url(
 				array(
 					'inlineId' => $thickbox_id,
@@ -37,10 +37,10 @@ class WPGPT_Caption_Generator {
 			); ?>
 			<a 
 			href="<?php echo esc_attr( $url ); ?>"
-			id="<?php printf( 'wpgpt-generate-caption-%1$s', sanitize_key( $editor ) ); ?>" 
-			class="button thickbox wpgpt-generate-caption" 
+			id="<?php printf( 'wpgpt-caption-generator-%1$s', sanitize_key( $editor ) ); ?>" 
+			class="button thickbox wpgpt-caption-generator" 
 			data-editor="<?php echo esc_attr( $editor ); ?>">
-				<span class="dashicons dashicons-admin-comments" style="vertical-align:middle;pointer-events:none;"></span>
+				<span class="dashicons dashicons-share" style="vertical-align:middle;pointer-events:none;margin-top:-0.2em;"></span>
 				<span style="pointer-events:none;"><?php esc_html_e( 'Generate Caption', 'wpgpt' ); ?></span>
 			</a>
 			<div id="<?php echo esc_attr( $thickbox_id ); ?>" style="display:none;">
@@ -50,36 +50,36 @@ class WPGPT_Caption_Generator {
 	}
 
 	public function render_generate_caption_modal( string $editor ) {
-		$modal_id = sprintf( 'wpgpt-generate-caption-modal-%1$s', $editor ); ?>
-		<div id="<?php echo esc_attr( $modal_id ); ?>" class="wpgpt-generate-caption-modal">
-			<div class="wpgpt-generate-caption-modal__header">
-				<h2 class="wpgpt-generate-caption-modal__title">
+		$modal_id = sprintf( 'wpgpt-caption-generator-modal-%1$s', $editor ); ?>
+		<div id="<?php echo esc_attr( $modal_id ); ?>" class="wpgpt-caption-generator-modal">
+			<div class="wpgpt-caption-generator-modal__header">
+				<h2 class="wpgpt-caption-generator-modal__title">
 					<?php esc_html_e( 'Generate a Social Media Caption', 'wpgpt' ); ?>
 				</h2>
-				<p class="wpgpt-generate-caption-modal__description">
+				<p class="wpgpt-caption-generator-modal__description">
 					<?php esc_html_e( 'Click "Generate" to generate a social media caption using the current post content as context.', 'wpgpt' ); ?>
 				</p>
 			</div>
-			<div class="wpgpt-generate-caption-modal__scroller">
-				<pre class="wpgpt-generate-caption-modal__output"></pre>
-				<div class="wpgpt-generate-caption-modal__loader">
-					<div class="wpgpt-generate-caption-modal__loader-container">
+			<div class="wpgpt-caption-generator-modal__scroller">
+				<pre class="wpgpt-caption-generator-modal__output"></pre>
+				<div class="wpgpt-caption-generator-modal__loader">
+					<div class="wpgpt-caption-generator-modal__loader-container">
 						<img 
-						class="wpgpt-generate-caption-modal__loader-spinner"
+						class="wpgpt-caption-generator-modal__loader-spinner"
 						src="<?php echo esc_url( home_url( '/wp-includes/images/spinner-2x.gif' ) ); ?>" 
 						width="36" 
 						height="36" />
-						<h2 class="wpgpt-generate-caption-modal__loader-title">
+						<h2 class="wpgpt-caption-generator-modal__loader-title">
 							<?php esc_html_e( 'Generating Caption...', 'wpgpt' ); ?>
 						</h2>
 					</div>
 				</div>
 			</div>
-			<div class="wpgpt-generate-caption-modal__actions">
+			<div class="wpgpt-caption-generator-modal__actions">
 				<button 
 				type="button"
 				data-editor="<?php echo esc_attr( $editor ); ?>"
-				class="button-primary wpgpt-generate-caption-modal__submit">
+				class="button-primary wpgpt-caption-generator-modal__submit">
 					<?php echo esc_html_e( 'Generate', 'wpgpt' ); ?>
 				</button>
 			</div>
@@ -88,7 +88,7 @@ class WPGPT_Caption_Generator {
 
 	public function print_admin_style() { ?>
 
-		<style id="wpgpt-generate-caption-style">
+		<style id="wpgpt-caption-generator-style">
 
 			#TB_ajaxContent {
 				position: relative;
@@ -97,7 +97,7 @@ class WPGPT_Caption_Generator {
 				box-sizing: border-box;
 			}
 
-			.wpgpt-generate-caption-modal {
+			.wpgpt-caption-generator-modal {
 				position: absolute;
 				top: 0;
 				left: 0;
@@ -109,30 +109,30 @@ class WPGPT_Caption_Generator {
 				justify-content: flex-start;
 			}
 
-			.wpgpt-generate-caption-modal__scroller {
+			.wpgpt-caption-generator-modal__scroller {
 				flex-grow: 1;
 				overflow-y: auto;
 				padding: 20px;
 				position: relative;
 			}
 
-			.wpgpt-generate-caption-modal__header {
+			.wpgpt-caption-generator-modal__header {
 				background-color: #fafafa;
 				border-bottom: 1px solid #dddddd;
 				padding: 20px;
 			}
 
-			.wpgpt-generate-caption-modal__title {
+			.wpgpt-caption-generator-modal__title {
 				margin: 0 0 4px;
 				padding: 0;
 			}
 
-			.wpgpt-generate-caption-modal__description {
+			.wpgpt-caption-generator-modal__description {
 				margin: 0;
 				padding: 0;
 			}
 
-			.wpgpt-generate-caption-modal__output {
+			.wpgpt-caption-generator-modal__output {
 				width: 100%;
 				height: 100%;
 				margin: 0;
@@ -144,7 +144,7 @@ class WPGPT_Caption_Generator {
 				line-height: 1.25;
 			}
 
-			.wpgpt-generate-caption-modal__loader {
+			.wpgpt-caption-generator-modal__loader {
 				background-color: #ffffff;
 				position: absolute;
 				top: 0;
@@ -154,7 +154,7 @@ class WPGPT_Caption_Generator {
 				display: none;
 			}
 
-			.wpgpt-generate-caption-modal__loader-container {
+			.wpgpt-caption-generator-modal__loader-container {
 				display: flex;
 				flex-flow: column;
 				align-items: center;
@@ -163,11 +163,11 @@ class WPGPT_Caption_Generator {
 				height: 100%;
 			}
 
-			.wpgpt-generate-caption-modal__loader-title {
+			.wpgpt-caption-generator-modal__loader-title {
 				text-align: center;
 			}
 
-			.wpgpt-generate-caption-modal__actions {
+			.wpgpt-caption-generator-modal__actions {
 				border-top: 1px solid #dddddd;
 				padding: 20px;
 				display: flex;
@@ -176,7 +176,7 @@ class WPGPT_Caption_Generator {
 				justify-content: flex-end;
 			}
 
-			.wpgpt-generate-caption-modal--loading .wpgpt-generate-caption-modal__loader {
+			.wpgpt-caption-generator-modal--loading .wpgpt-caption-generator-modal__loader {
 				display: block;
 			}
 
@@ -186,19 +186,19 @@ class WPGPT_Caption_Generator {
 
 	public function print_admin_script() { ?>
 
-		<script id="wpgpt-generate-caption-script">
+		<script id="wpgpt-caption-generator-script">
 
 			(function() {
 
 				function init() {
-					const buttons = document.querySelectorAll('button.wpgpt-generate-caption-modal__submit');
+					const buttons = document.querySelectorAll('button.wpgpt-caption-generator-modal__submit');
 					buttons.forEach(function(button) {
 						button.addEventListener('click', handleButtonClick);
 					});
 				}
 
 				function destroy() {
-					const buttons = document.querySelectorAll('button.wpgpt-generate-caption-modal__submit');
+					const buttons = document.querySelectorAll('button.wpgpt-caption-generator-modal__submit');
 					buttons.forEach(function(button) {
 						button.removeEventListener('click', handleButtonClick);
 					});
@@ -212,7 +212,7 @@ class WPGPT_Caption_Generator {
 				}
 
 				function setOutputContent(editorId, messages) {
-					const output = document.querySelector('#wpgpt-generate-caption-modal-' + editorId + ' .wpgpt-generate-caption-modal__output');
+					const output = document.querySelector('#wpgpt-caption-generator-modal-' + editorId + ' .wpgpt-caption-generator-modal__output');
 					const content = messages.join('\n\n');
 					output.innerHTML = content;
 				}
@@ -251,11 +251,11 @@ class WPGPT_Caption_Generator {
 				}
 
 				function setLoading(editorId, isLoading) {
-					const modal = document.getElementById('wpgpt-generate-caption-modal-' + editorId);
+					const modal = document.getElementById('wpgpt-caption-generator-modal-' + editorId);
 					if (isLoading) {
-						modal.classList.add('wpgpt-generate-caption-modal--loading');
+						modal.classList.add('wpgpt-caption-generator-modal--loading');
 					} else {
-						modal.classList.remove('wpgpt-generate-caption-modal--loading');
+						modal.classList.remove('wpgpt-caption-generator-modal--loading');
 					}
 				}
 
@@ -264,7 +264,7 @@ class WPGPT_Caption_Generator {
 					const prompt = getPrompt();
 					console.info('Generating Caption...\n\n', prompt);
 					const response = wp.apiRequest({
-						path: '/wpgpt/v1/generate-post',
+						path: '/wpgpt/v1/generate',
 						data: {
 							prompt: prompt,
 							choices: 3,
@@ -291,8 +291,14 @@ class WPGPT_Caption_Generator {
 					});
 				}
 
+				window.wpgpt = window.wpgpt || {};
+				window.wpgpt.captionGenerator = {
+					init: init,
+					destroy: destroy,
+				};
+
 				document.addEventListener('DOMContentLoaded', function(e) {
-					init();
+					window.wpgpt.captionGenerator.init();
 				});
 
 			})();
