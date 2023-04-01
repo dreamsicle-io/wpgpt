@@ -50,11 +50,8 @@ class WPGPT_Utils {
 		$param_string = build_query( $params );
 
 		// Inline thickbox links break when a `?` sep is aready in the URL,
-		// so use `&` as the sep instead if `?` is found in the URL.
-		$sep = '?';
-		if ( str_contains( $current_url, '?' ) ) {
-			$sep = '&';
-		}
+		// so use `&` as the sep instead of `?` if it is found in the URL.
+		$sep = str_contains( $current_url, '?' ) ? '&' : '?';
 
 		return "#TB_inline{$sep}{$param_string}";
 	}
