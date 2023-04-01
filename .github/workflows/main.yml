@@ -18,6 +18,7 @@ jobs:
         id: set_plugin_version
         run: echo "PLUGIN_VERSION=$(grep '* Version:' wpgpt.php | awk '{print $3}')" >> $GITHUB_ENV
       
+      # Setup PHP.
       - name: Setup PHP
         id: setup_php
         uses: "shivammathur/setup-php@v2"
