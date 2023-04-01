@@ -94,7 +94,7 @@ class WPGPT_API {
 		$this->default_temperature       = get_option( 'wpgpt_default_temperature', 0.5 );
 		$this->default_presence_penalty  = get_option( 'wpgpt_default_presence_penalty', 0 );
 		$this->default_frequency_penalty = get_option( 'wpgpt_default_frequency_penalty', 0 );
-		$this->default_model             = 'gpt-3.5-turbo';
+		$this->default_model             = get_option( 'wpgpt_default_model', 'gpt-3.5-turbo' );
 		$this->default_choices           = 1;
 		$this->client                    = OpenAI::client( $this->api_key );
 	}
