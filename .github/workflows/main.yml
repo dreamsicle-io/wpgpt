@@ -35,7 +35,7 @@ jobs:
       - name: Zip Plugin
         id: zip_plugin
         run: |
-          zip -r wpgpt.zip ./ -x ".vscode/" ".github/" ".editorconfig" ".gitignore" "composer.json" "composer.lock" "phpcs.xml" "pre-commit"
+          zip -r wpgpt.zip ./ -x .vscode/* -x .github/* -x .editorconfig -x .gitignore -x composer.json -x composer.lock -x phpcs.xml -x pre-commit"
       
       # Creates a release draft.
       - name: Create Release
