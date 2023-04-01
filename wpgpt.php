@@ -3,7 +3,7 @@
  * Plugin Name:       WPGPT
  * Plugin URI:        https://github.com/dreamsicle-io/wpgpt/
  * Description:       An experimental plugin integrating ChatGPT with WordPress.
- * Version:           0.3.0
+ * Version:           0.3.1
  * Requires at least: 6.0.0
  * Requires PHP:      8.1.0
  * Author:            Dreamsicle

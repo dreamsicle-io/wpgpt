@@ -1,8 +1,8 @@
 === WPGPT ===
 
 Contributors: noahmason
-Tags: openai, chatgpt, ai, post-generation
-Stable tag: 0.3.0
+Tags: openai, chatgpt, ai, post-generation, caption-generation
+Stable tag: 0.3.1
 Requires PHP: 8.1.0
 Requires at least: 6.0.0
 Tested up to: 6.1.0
