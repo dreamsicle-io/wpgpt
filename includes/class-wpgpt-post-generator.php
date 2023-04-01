@@ -53,7 +53,7 @@ class WPGPT_Post_Generator {
 			id="<?php printf( 'wpgpt-post-generator-%1$s', sanitize_key( $editor ) ); ?>" 
 			class="button wpgpt-post-generator" 
 			data-editor="<?php echo esc_attr( $editor ); ?>">
-				<span class="dashicons dashicons-welcome-write-blog" style="vertical-align:middle;pointer-events:none;margin-top:-0.2em;"></span>
+				<span class="dashicons dashicons-welcome-write-blog wp-media-buttons-icon" style="pointer-events:none;"></span>
 				<span style="pointer-events:none;"><?php esc_html_e( 'Generate Post', 'wpgpt' ); ?></span>
 			</button>
 		<?php }
@@ -89,6 +89,10 @@ class WPGPT_Post_Generator {
 	public function print_admin_style() { ?>
 
 		<style id="wpgpt-post-generator-style">
+
+			.wpgpt-post-generator .wp-media-buttons-icon {
+				margin-top: -0.2em !important;
+			}
 
 			.wpgpt-post-generator-loader {
 				position: fixed;

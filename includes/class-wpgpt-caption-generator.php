@@ -77,7 +77,7 @@ class WPGPT_Caption_Generator {
 			id="<?php printf( 'wpgpt-caption-generator-%1$s', sanitize_key( $editor ) ); ?>" 
 			class="button thickbox wpgpt-caption-generator" 
 			data-editor="<?php echo esc_attr( $editor ); ?>">
-				<span class="dashicons dashicons-share" style="vertical-align:middle;pointer-events:none;margin-top:-0.2em;"></span>
+				<span class="dashicons dashicons-share wp-media-buttons-icon" style="pointer-events:none;"></span>
 				<span style="pointer-events:none;"><?php esc_html_e( 'Generate Caption', 'wpgpt' ); ?></span>
 			</a>
 			<div id="<?php echo esc_attr( $thickbox_id ); ?>" style="display:none;">
@@ -145,6 +145,10 @@ class WPGPT_Caption_Generator {
 				width: 100% !important;
 				height: calc(100% - 30px) !important;
 				box-sizing: border-box;
+			}
+
+			.wpgpt-caption-generator .wp-media-buttons-icon {
+				margin-top: -0.2em !important;
 			}
 
 			.wpgpt-caption-generator-modal {

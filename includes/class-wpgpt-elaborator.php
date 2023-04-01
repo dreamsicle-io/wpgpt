@@ -53,7 +53,7 @@ class WPGPT_Elaborator {
 			id="<?php printf( 'wpgpt-elaborator-%1$s', sanitize_key( $editor ) ); ?>" 
 			class="button wpgpt-elaborator" 
 			data-editor="<?php echo esc_attr( $editor ); ?>">
-				<span class="dashicons dashicons-welcome-add-page" style="vertical-align:middle;pointer-events:none;margin-top:-0.2em;"></span>
+				<span class="dashicons dashicons-welcome-add-page wp-media-buttons-icon" style="pointer-events:none;"></span>
 				<span style="pointer-events:none;"><?php esc_html_e( 'Elaborate', 'wpgpt' ); ?></span>
 			</button>
 		<?php }
@@ -89,6 +89,10 @@ class WPGPT_Elaborator {
 	public function print_admin_style() { ?>
 
 		<style id="wpgpt-elaborator-style">
+
+			.wpgpt-elaborator .wp-media-buttons-icon {
+				margin-top: -0.2em !important;
+			}
 
 			.wpgpt-elaborator-loader {
 				position: fixed;
