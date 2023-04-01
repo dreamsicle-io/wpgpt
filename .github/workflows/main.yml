@@ -19,11 +19,14 @@ jobs:
         run: echo "PLUGIN_VERSION=$(grep '* Version:' wpgpt.php | awk '{print $3}')" >> $GITHUB_ENV
       
       # Installs Composer dependencies.
+      # Note: php-actions/composer only accepts very specific version strings (1.x, 2.x, 2.2.x, latest)
+      # Note: php-actions/composer only accepts very specific php_version strings (7.1, 7.2, 7.3, 7.4 or 8.0)
+      # See: https://github.com/marketplace/actions/composer-php-actions#passing-arguments
       - name: Install Dependencies
         uses: php-actions/composer@v6
         with:
-          version: "2.4"
-          php_version: "8.1"
+          version: "2.x"
+          php_version: "8.0"
           dev: "no"
       
       # Zips the plugin.
