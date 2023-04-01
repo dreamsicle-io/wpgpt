@@ -240,7 +240,7 @@ class WPGPT_Caption_Generator {
 					params.set('p', postId);
 					return window.location.origin + '?' + params.toString();
 				}
-				
+
 				function getPrompt() {
 					const content = getContent();
 					const url = getShortlink();
@@ -253,7 +253,6 @@ class WPGPT_Caption_Generator {
 					return prompt;
 				}
 
-				
 				function setLoading(editorId, isLoading) {
 					const modal = document.getElementById('wpgpt-caption-generator-modal-' + editorId);
 					if (isLoading) {
