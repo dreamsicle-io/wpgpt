@@ -191,6 +191,7 @@ class WPGPT_Caption_Generator {
 			(function() {
 
 				function init() {
+					destroy();
 					const buttons = document.querySelectorAll('button.wpgpt-caption-generator-modal__submit');
 					buttons.forEach(function(button) {
 						button.addEventListener('click', handleButtonClick);
@@ -225,8 +226,10 @@ class WPGPT_Caption_Generator {
 				function getContent() {
 					const formData = getFormData();
 					return formData.get('content')
-						.replace( /(<([^>]+)>)/ig, '')
-						.replace(/\n/ig, '')
+						.replace( /(<([^>]+)>)/ig, '') // strip tags.
+						.replace(/\n\n/ig, ' ') // Replace double line breaks with spaces.
+						.replace(/\n/ig, ' ') // Replace single line breaks with spaces.
+						.replace(/^(.{1000}[^\s]*).*/ig, '$1') // Get only the first n characters (without breaking words).
 						.trim();
 				}
 
@@ -237,19 +240,20 @@ class WPGPT_Caption_Generator {
 					params.set('p', postId);
 					return window.location.origin + '?' + params.toString();
 				}
-
+				
 				function getPrompt() {
 					const content = getContent();
 					const url = getShortlink();
 					var prompt = 'Write a social media caption for the following post:\n\n';
-					prompt += content + '\n\n';
+					prompt += '```\n';
+					prompt += content + '\n';
+					prompt += '```\n\n';
 					prompt += 'Instructions: Begin with an emoji. Include at least 3 popular hashtags. Include the URL "' + url + '".\n';
-					prompt += 'Persona: Social Media Expert.\n'
-					prompt += 'Tone: Creative, Urgent.\n';
-					prompt += 'Format: plaintext.\n';
-					return prompt.trim();
+					prompt += 'Personality: Write in a creative and urgent tone as if you were a social media export for a popular publication. Do not write in the first person.\n\n';
+					return prompt;
 				}
 
+				
 				function setLoading(editorId, isLoading) {
 					const modal = document.getElementById('wpgpt-caption-generator-modal-' + editorId);
 					if (isLoading) {
