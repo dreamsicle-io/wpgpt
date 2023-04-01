@@ -165,7 +165,6 @@ class WPGPT_API {
 	 * @return WP_REST_Response An outgoing API response instance.
 	 */
 	public function generate( WP_REST_Request $request ): WP_REST_Response {
-
 		$model             = $request->get_param( 'model' );
 		$choices           = $request->get_param( 'choices' );
 		$temperature       = $request->get_param( 'temperature' );
@@ -191,7 +190,6 @@ class WPGPT_API {
 					),
 				)
 			);
-
 			$status = 200;
 			$data   = $result->toArray();
 		} catch ( Exception $error ) {

@@ -249,7 +249,6 @@ class WPGPT_Caption_Generator {
 	 * @return void
 	 */
 	public function print_admin_script() { ?>
-
 		<script id="wpgpt-caption-generator-script">
 
 			(function() {
@@ -371,6 +370,5 @@ class WPGPT_Caption_Generator {
 			})();
 
 		</script>
-
 	<?php }
 }

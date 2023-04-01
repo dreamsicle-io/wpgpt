@@ -87,7 +87,6 @@ class WPGPT_Post_Generator {
 	 * @return void
 	 */
 	public function print_admin_style() { ?>
-
 		<style id="wpgpt-post-generator-style">
 
 			.wpgpt-post-generator .wp-media-buttons-icon {
@@ -129,7 +128,6 @@ class WPGPT_Post_Generator {
 			}
 
 		</style>
-
 	<?php }
 
 	/**
@@ -139,7 +137,6 @@ class WPGPT_Post_Generator {
 	 * @return void
 	 */
 	public function print_admin_script() { ?>
-
 		<script id="wpgpt-post-generator-script">
 
 			(function() {
@@ -275,6 +272,5 @@ class WPGPT_Post_Generator {
 			})();
 
 		</script>
-
 	<?php }
 }

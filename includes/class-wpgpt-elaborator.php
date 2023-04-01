@@ -87,7 +87,6 @@ class WPGPT_Elaborator {
 	 * @return void
 	 */
 	public function print_admin_style() { ?>
-
 		<style id="wpgpt-elaborator-style">
 
 			.wpgpt-elaborator .wp-media-buttons-icon {
@@ -129,7 +128,6 @@ class WPGPT_Elaborator {
 			}
 
 		</style>
-
 	<?php }
 
 	/**
@@ -139,7 +137,6 @@ class WPGPT_Elaborator {
 	 * @return void
 	 */
 	public function print_admin_script() { ?>
-
 		<script id="wpgpt-elaborator-script">
 
 			(function() {
@@ -237,6 +234,5 @@ class WPGPT_Elaborator {
 			})();
 
 		</script>
-
 	<?php }
 }
