@@ -3,7 +3,7 @@
  * Plugin Name:       WPGPT
  * Plugin URI:        https://github.com/dreamsicle-io/wpgpt/
  * Description:       An experimental plugin integrating ChatGPT with WordPress.
- * Version:           0.3.1
+ * Version:           0.4.0
  * Requires at least: 6.0.0
  * Requires PHP:      8.1.0
  * Author:            Dreamsicle
@@ -29,8 +29,17 @@ require WPGPT_PATH . '/includes/class-wpgpt-elaborator.php';
 require WPGPT_PATH . '/includes/class-wpgpt-caption-generator.php';
 require WPGPT_PATH . '/includes/class-wpgpt-utils.php';
 
-add_action( 'plugins_loaded', array( new WPGPT_API(), 'init' ), 10 );
-add_action( 'plugins_loaded', array( new WPGPT_Settings(), 'init' ), 10 );
-add_action( 'plugins_loaded', array( new WPGPT_Post_Generator(), 'init' ), 10 );
-add_action( 'plugins_loaded', array( new WPGPT_Elaborator(), 'init' ), 10 );
-add_action( 'plugins_loaded', array( new WPGPT_Caption_Generator(), 'init' ), 10 );
+/**
+ * Initialize
+ *
+ * @since 0.4.0
+ */
+function wpgpt_init() {
+	add_action( 'init', array( new WPGPT_API(), 'init' ), 10 );
+	add_action( 'init', array( new WPGPT_Settings(), 'init' ), 10 );
+	add_action( 'init', array( new WPGPT_Post_Generator(), 'init' ), 10 );
+	add_action( 'init', array( new WPGPT_Elaborator(), 'init' ), 10 );
+	add_action( 'init', array( new WPGPT_Caption_Generator(), 'init' ), 10 );
+}
+
+add_action( 'init', 'wpgpt_init', 0 );
